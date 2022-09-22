@@ -44,19 +44,12 @@ public class Lab1 {
                 }
             }
         }
-        int[] colWidths = new int[16];
-        for (int i=0; i<b[0].length; i++) {
-            int maxW = -1;
-            for (int j=0; j<b.length; j++) {
-                maxW = (int)Math.max(maxW, String.format("%.2f", b[j][i]).length());
-            }
-            colWidths[i] = maxW;
-        }
 
         for (int i=0; i<b.length; i++) {
             for (int j=0; j<b[0].length; j++) {
-                String curNum = String.format("%.2f ", b[i][j]);
-                System.out.print(" ".repeat(colWidths[j]-curNum.length()+1) + curNum);
+                String curNum = String.format("%6s", String.format("%.2f", b[i][j]));
+                curNum = curNum.replace("0,00", "---");
+                System.out.print(curNum);
             }
             System.out.print("\n");
         }
