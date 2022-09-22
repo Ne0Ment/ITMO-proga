@@ -26,7 +26,7 @@ public class Lab1 {
         double[] temp = new double[len];
         for (int i=0; i<len; i++) {
             temp[i] = minV + Math.random()*(maxV-minV);
-        } 
+        }
         return temp;
     }
     public static void main(String[] args) {
@@ -45,10 +45,10 @@ public class Lab1 {
             }
         }
 
-        for (int i=0; i<b.length; i++) {
-            for (int j=0; j<b[0].length; j++) {
-                String curNum = String.format("%6s", String.format("%.2f", b[i][j]));
-                curNum = curNum.replace("0,00", "---");
+        for (var i : b) {
+            for (var j : i) {
+                String curNum = String.format("%6s", String.format("%.2f", j));
+                curNum = curNum.replace("0,00", "----");
                 System.out.print(curNum);
             }
             System.out.print("\n");
