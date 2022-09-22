@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.9.21)  21 SEP 2022 22:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.9.21)  22 SEP 2022 08:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -509,44 +509,46 @@ e
 [1
 
 {/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+(./МихеевИР_P3118_lab1.toc)
+\tf@toc=\write3
+\openout3 = `МихеевИР_P3118_lab1.toc'.
+
 <task.png, id=11, 1058.95625pt x 307.1475pt>
 File: task.png Graphic file (type png)
 <use task.png>
-Package pdftex.def Info: task.png  used on input line 55.
+Package pdftex.def Info: task.png  used on input line 60.
 (pdftex.def)             Requested size: 540.60239pt x 156.80249pt.
 <lab1QR.png, id=13, 594.22pt x 594.22pt>
 File: lab1QR.png Graphic file (type png)
 <use lab1QR.png>
-Package pdftex.def Info: lab1QR.png  used on input line 60.
+Package pdftex.def Info: lab1QR.png  used on input line 65.
 (pdftex.def)             Requested size: 199.16928pt x 199.16693pt.
-<result.png, id=14, 1015.795pt x 261.97874pt>
+<result.png, id=14, 875.27pt x 254.9525pt>
 File: result.png Graphic file (type png)
 <use result.png>
-Package pdftex.def Info: result.png  used on input line 65.
-(pdftex.def)             Requested size: 540.60239pt x 139.4277pt.
-
-[2 <./task.png> <./lab1QR.png> <./result.png>]
-(./МихеевИР_P3118_lab1.aux) ) 
+Package pdftex.def Info: result.png  used on input line 70.
+(pdftex.def)             Requested size: 540.60239pt x 157.4698pt.
+ [2 <./task.png> <./lab1QR.png>] [3 <./result.png>] (./МихеевИР_P3118_l
+ab1.aux) ) 
 Here is how much of TeX's memory you used:
- 4999 strings out of 478268
- 77856 string characters out of 5846347
+ 5005 strings out of 478268
+ 78004 string characters out of 5846347
  393554 words of memory out of 5000000
- 23169 multiletter control sequences out of 15000+600000
+ 23172 multiletter control sequences out of 15000+600000
  475318 words of font info for 36 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  68i,5n,76p,435b,192s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/usr/local/texlive/2022/texmf-dist/fonts/
-enc/dvips/cm-super/cm-super-t2a.enc}</usr/local/texlive/2022/texmf-dist/fonts/t
-ype1/public/cm-super/sfbi1440.pfb></usr/local/texlive/2022/texmf-dist/fonts/typ
-e1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1
-/public/cm-super/sfbx1440.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/p
-ublic/cm-super/sfbx1728.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/pub
-lic/cm-super/sfrm1200.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/publi
-c/cm-super/sfrm1440.pfb>
-Output written on МихеевИР_P3118_lab1.pdf (2 pages, 320876 bytes).
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super
+-t2a.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbi14
+40.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx1200
+.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx1440.p
+fb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb
+></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><
+/usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb>
+Output written on МихеевИР_P3118_lab1.pdf (3 pages, 307310 bytes).
 PDF statistics:
- 48 PDF objects out of 1000 (max. 8388607)
- 26 compressed objects within 1 object stream
+ 51 PDF objects out of 1000 (max. 8388607)
+ 28 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
