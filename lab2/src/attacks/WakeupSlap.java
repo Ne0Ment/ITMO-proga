@@ -2,7 +2,6 @@ package lab2.src.attacks;
 
 import ru.ifmo.se.pokemon.PhysicalMove;
 import ru.ifmo.se.pokemon.Pokemon;
-import ru.ifmo.se.pokemon.Stat;
 import ru.ifmo.se.pokemon.Status;
 import ru.ifmo.se.pokemon.Type;
 
