@@ -1,4 +1,5 @@
 package lab2.src.pokemons;
+import lab2.src.attacks.DarkPulse;
 import lab2.src.attacks.PoisonTail;
 import lab2.src.attacks.Rest;
 import lab2.src.attacks.Swagger;
@@ -13,5 +14,6 @@ public class Seviper extends Pokemon {
         this.addMove(new PoisonTail());
         this.addMove(new Swagger());
         this.addMove(new Rest());
+        this.addMove(new DarkPulse());
     }
 }
