@@ -12,7 +12,7 @@ public class Thunder extends SpecialMove {
 
     @Override
     protected void applyOppEffects(Pokemon p) {
-        if ((new Effect().chance(0.3)).success()) {
+        if (Math.random()>0.3) {
             Effect.paralyze(p);
         }
         super.applyOppEffects(p);

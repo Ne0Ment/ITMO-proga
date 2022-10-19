@@ -14,7 +14,7 @@ public class Waterfall extends PhysicalMove{
     @Override
     protected void applyOppEffects(Pokemon p) {
         p.setMod(Stat.HP, 80);
-        if ((new Effect().chance(0.2)).success()) {
+        if (Math.random()>0.2) {
             Effect.flinch(p);
         }
         super.applyOppEffects(p);

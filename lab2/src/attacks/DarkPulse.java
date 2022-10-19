@@ -12,7 +12,7 @@ public class DarkPulse extends SpecialMove{
 
     @Override
     protected void applyOppEffects(Pokemon p) {
-        if ((new Effect().chance(0.2)).success()) {
+        if (Math.random()>0.3) {
             Effect.flinch(p);
         }
         super.applyOppEffects(p);
