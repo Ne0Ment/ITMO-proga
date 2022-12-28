@@ -8,8 +8,7 @@ public class Dungeon extends Place implements IDisappearable{
     private String description;
     private Thing[] contents;
     public Dungeon(String name, String description, Thing[] contents) {
-        super();
-        this.setName(name);
+        super(name);
         this.setDescription(description);
         this.setContents(contents);
     }

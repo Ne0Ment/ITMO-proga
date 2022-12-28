@@ -1,8 +1,8 @@
 import entities.Alice;
 import entities.Him;
 import enums.time;
-import places.Around;
 import places.Dungeon;
+import places.Place;
 import story.Storyteller;
 import things.*;
 
@@ -11,17 +11,17 @@ public class Main {
         //first sentence objects
         Alice alice = new Alice("Алиса", "девочка", "очень добрая");
         Him him = new Him("он");
-        Fan fan = new Fan("веер", "веера");
-        Gloves gloves = new Gloves("бальные перчатки", "перчаток");
+        Thing fan = new Thing("веер", "веера");
+        Thing gloves = new Thing("бальные перчатки", "перчаток");
 
         //second sentence objects
         Storyteller storyteller = new Storyteller();
-        Everything everything = new Everything("все");
-        Around around = new Around("вокруг");
+        Everything everything = new Everything("все", "всего");
+        Place around = new Place("вокруг");
 
         //third sentence objects
-        Table table = new Table("стеклянный столик");
-        Door door = new Door("заветная дверна");
+        Thing table = new Thing("стеклянный столик", "стеклянного столика");
+        Thing door = new Thing("заветная дверна", "заветной дверцы");
         Dungeon dungeon = new Dungeon("подземелье", "Громадное", new Thing[]{ table, door});
 
         //construct output string

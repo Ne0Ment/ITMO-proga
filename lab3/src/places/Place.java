@@ -1,17 +1,17 @@
 package places;
 
-import entities.Person;
-
 import java.util.Objects;
 
-public abstract class Place {
+public class Place {
     private String name;
 
-    public Place() { };
-
-    public void setName(String name){
+    public Place(String name) {
         this.name = name;
-    }
+    };
+
+    public void setName(String name) {
+        this.name = name;
+    };
 
     public String getName(){
         return this.name;

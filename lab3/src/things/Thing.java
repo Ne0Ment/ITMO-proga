@@ -4,11 +4,14 @@ import entities.Person;
 
 import java.util.Objects;
 
-public abstract class Thing {
+public class Thing {
     private String name;
     private String parentcaseName;
 
-    protected Thing() { };
+    public Thing(String name, String parentcaseName) {
+        this.setName(name);
+        this.setParentcaseName(parentcaseName);
+    };
 
     public void setName(String name){
         this.name = name;
