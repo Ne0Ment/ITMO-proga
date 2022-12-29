@@ -2,6 +2,7 @@ package places;
 
 import things.Thing;
 
+import java.util.Objects;
 import java.util.stream.Stream;
 
 public class Dungeon extends Place implements IDisappearable{
@@ -37,5 +38,24 @@ public class Dungeon extends Place implements IDisappearable{
 
     public String disappearWithFullDescription(){
         return this.descriptionWithContents() + " исчезло без следа, словно его никогда и не было.";
+    }
+
+    @Override
+    public boolean equals(Object otherObj) {
+        if (this == otherObj) return true;
+        if (otherObj == null) return false;
+        if (!this.getClass().equals(otherObj.getClass())) return false;
+        Dungeon other = (Dungeon) otherObj;
+        return Objects.equals(this.getName(), other.getName()) & Objects.equals(this.getDescription(), other.getDescription()) & Objects.equals(this.getContents(), other.getContents());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.getName() + this.getDescription() + this.getContents().toString());
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getName() + "[name=" + this.getName() + ",description=" + this.getDescription() + ",contents=" + this.getContents().toString() + "]";
     }
 }

@@ -35,16 +35,16 @@ public class Thing {
         if (otherObj == null) return false;
         if (!this.getClass().equals(otherObj.getClass())) return false;
         Thing other = (Thing) otherObj;
-        return Objects.equals(this.name, other.name);
+        return Objects.equals(this.name, other.name) & Objects.equals(this.parentcaseName, other.parentcaseName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.name);
+        return Objects.hash(this.name + this.parentcaseName);
     }
 
     @Override
     public String toString() {
-        return getClass().getName() + "[name=" + this.name + "]";
+        return getClass().getName() + "[name=" + this.name + ",parentCaseName=" + this.parentcaseName + "]";
     }
 }

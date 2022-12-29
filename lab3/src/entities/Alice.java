@@ -3,6 +3,7 @@ package entities;
 import enums.time;
 import things.Thing;
 
+import java.util.Objects;
 import java.util.stream.Stream;
 
 public class Alice extends Person implements IThinkable, ISearchable, ICriable{
@@ -55,5 +56,24 @@ public class Alice extends Person implements IThinkable, ISearchable, ICriable{
 
     public String cry(){
         return this.getName() + " купалась в слезах.";
+    }
+
+    @Override
+    public boolean equals(Object otherObj) {
+        if (this == otherObj) return true;
+        if (otherObj == null) return false;
+        if (!this.getClass().equals(otherObj.getClass())) return false;
+        Alice other = (Alice) otherObj;
+        return Objects.equals(this.getName(), other.getName()) & Objects.equals(this.getPronoun(), other.getPronoun()) & Objects.equals(this.getCharacter(), other.getCharacter());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.getName() + this.getCharacter() + this,getPronoun());
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getName() + "[name=" + this.getName() + ",pronoun=" + this.getPronoun() + ",character=" + this.getCharacter() + "]" ;
     }
 }
