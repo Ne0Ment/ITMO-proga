@@ -1,0 +1,20 @@
+package enums;
+
+public enum time {
+    DEFAULT(""),
+    STRAIGHTAWAY("сразу"),
+    IMMEDIATELY("немедленно"),
+    SOON("вскоре"),
+    THISINSTANT("Сию минуту"),
+    AFTER("с тех пор");
+
+    private String description;
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    private time(String description){
+        this.description = description;
+    }
+}
