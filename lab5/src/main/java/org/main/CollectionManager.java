@@ -78,6 +78,10 @@ public class CollectionManager {
         return maxId;
     }
 
+    public TreeSet<Worker> getWorkers() {
+        return workers;
+    }
+
     public void filterWorkers(WorkerFilter filter) {
         ArrayList<Worker> workers = this.getWorkerList();
         for (Worker worker : workers) {

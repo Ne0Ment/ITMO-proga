@@ -9,7 +9,7 @@ import java.io.Writer;
  * @author neoment
  * @version 0.1
  */
-class BetterBufferedWriter extends BufferedWriter {
+public class BetterBufferedWriter extends BufferedWriter {
     public BetterBufferedWriter(Writer out) {
         super(out);
     }
