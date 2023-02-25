@@ -1,0 +1,5 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Текст задания}{2}{}%
+\contentsline {section}{\numberline {2}Диаграмма классов}{3}{}%
+\contentsline {section}{\numberline {3}Исходный код программы}{3}{}%
+\contentsline {section}{\numberline {4}Вывод}{3}{}%
