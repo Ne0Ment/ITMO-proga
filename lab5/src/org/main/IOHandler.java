@@ -2,6 +2,7 @@ package org.main;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import static org.main.Main.exit;
 
@@ -12,44 +13,47 @@ import static org.main.Main.exit;
  */
 public class IOHandler {
     private final BufferedReader reader;
-    private final BetterBufferedWriter writer;
+    private final PrintWriter writer;
     private final CommandExecutor executor;
     private final Boolean isLocal;
 
-    public IOHandler(BufferedReader reader, BetterBufferedWriter writer, CommandExecutor executor, Boolean isLocal) {
+    public IOHandler(BufferedReader reader, PrintWriter writer, CommandExecutor executor, Boolean isLocal) {
         this.reader = reader;
         this.writer = writer;
         this.executor = executor;
         this.isLocal = isLocal;
     }
 
-    public void prompt() throws IOException {
+    public void prompt() {
         this.writer.print(!isLocal ? "> " : "");
+        this.writer.flush();
     }
 
     public void exitMessage(){
-        try {
-            this.writer.printLn(!isLocal ? "Shutting down" : "");
-        } catch (IOException ignored) {}
-
+        this.writer.println(!isLocal ? "Shutting down" : "");
     }
 
-    public void startMessage() throws IOException {
-        this.writer.printLn(!isLocal ? "Starting..." : "");
+    public void startMessage() {
+        this.writer.println(!isLocal ? "Starting..." : "");
     }
 
-    public void start() throws IOException{
+    public void start() {
         String line;
         this.startMessage();
         this.prompt();
-        while ((line = this.reader.readLine()) != null) {
-            Boolean shallExit = executor.run(line);
-            if (!shallExit) {
-                this.prompt();
-            } else {
-                exit();
+        try {
+            while ((line = this.reader.readLine()) != null) {
+                Boolean shallExit = executor.run(line);
+                if (!shallExit) {
+                    this.prompt();
+                } else {
+                    exit();
+                }
             }
+        } catch (IOException e) {
+            this.writer.println("IO interrupted.");
         }
+
     }
 
 }

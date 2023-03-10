@@ -1,20 +1,18 @@
 package org.main.commands;
 
-import org.main.BetterBufferedWriter;
-
-import java.io.IOException;
+import java.io.PrintWriter;
 
 public class WrongCommand implements Command {
 
-    private final BetterBufferedWriter writer;
+    private final PrintWriter writer;
 
-    public WrongCommand(BetterBufferedWriter writer) {
+    public WrongCommand(PrintWriter writer) {
         this.writer = writer;
     }
 
     @Override
-    public boolean execute(String[] commandArgs) throws IOException {
-        this.writer.printLn("Invalid command.");
+    public boolean execute(String[] commandArgs) {
+        this.writer.println("Invalid command.");
         return false;
     }
 }

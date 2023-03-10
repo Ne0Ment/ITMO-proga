@@ -1,16 +1,16 @@
 package org.main.commands;
 
-import org.main.BetterBufferedWriter;
 import org.main.CollectionManager;
 import org.main.Parser;
 import org.main.data.Position;
 import org.main.data.Worker;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class FilterLessCommand extends ManagerCommand {
-    public FilterLessCommand(BetterBufferedWriter writer, CollectionManager manager) {
+    public FilterLessCommand(PrintWriter writer, CollectionManager manager) {
         super(writer, manager);
     }
 
@@ -22,9 +22,9 @@ public class FilterLessCommand extends ManagerCommand {
             ArrayList<Worker> workers = this.manager.getWorkerList();
             for (Worker w : workers)
                 if ( w.getPosition().ordinal() < (position != null ? position.ordinal() : 0))
-                    this.writer.printLn(w.toString());
+                    this.writer.println(w.toString());
         } catch (Exception e) {
-            this.writer.printLn("Wrong position value.");
+            this.writer.println("Wrong position value.");
         }
         return false;
     }

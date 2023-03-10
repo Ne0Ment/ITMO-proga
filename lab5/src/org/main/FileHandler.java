@@ -5,12 +5,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.main.data.Worker;
-import org.main.exceptions.FileNotPassedException;
 import org.main.xml.WorkerDeserializer;
 import org.main.xml.WorkerSerializer;
 
 import java.io.*;
+import java.nio.file.Paths;
 import java.util.*;
+
+import static org.main.Main.logs;
 
 /**
  * Handles operations with Files.
@@ -19,12 +21,16 @@ import java.util.*;
  */
 public class FileHandler {
     private final String filePath;
-    private final boolean pathPassed;
     private final XmlMapper mapper;
+    private PrintWriter writer;
 
-    public FileHandler(String filePath) {
+    public FileHandler(String filePath, PrintWriter writer) {
+        this.writer = writer;
+        if (filePath==null) {
+            filePath = Paths.get(System.getProperty("user.dir"), "default.xml").toString();
+            writer.println("Will use default XML file: " + filePath);
+        }
         this.filePath = filePath;
-        this.pathPassed = !(filePath == null);
 
         this.mapper = new XmlMapper();
         SimpleModule module = new SimpleModule();
@@ -43,19 +49,18 @@ public class FileHandler {
             }
             return out.toString();
         } catch (FileNotFoundException e) {
-            throw new FileNotFoundException(this.FileNotFoundExceptionText());
+            this.createFile(filePath);
+            return this.readFile(filePath);
         } catch (SecurityException e) {
             throw new SecurityException(this.SecurityExceptionText());
         }
     }
 
-    public String readFile() throws FileNotPassedException, IOException {
-        if (!this.pathPassed) throw new FileNotPassedException();
-        return this.readFile(this.filePath);
+    public String readFile() throws IOException {
+        return this.readFile(this.getFilePath());
     }
 
-    public void writeFile(String s) throws IOException, SecurityException, FileNotFoundException, FileNotPassedException {
-        if (!this.pathPassed) throw new FileNotPassedException();
+    public void writeFile(String s) throws IOException, SecurityException{
         try {
             OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(this.filePath));
             writer.write(s);
@@ -74,18 +79,37 @@ public class FileHandler {
     }
 
     public CollectionManager deserialize(String s) throws JsonProcessingException {
+        if (s.trim().equals("")) { //create new collection if file is empty
+            return new CollectionManager();
+        }
         Worker[] workers = this.mapper.readValue(s, Worker[].class);
         long currentId = -1L;
         for (Worker w : workers) { currentId = Math.max(w.getId(), currentId); }
         return new CollectionManager(new TreeSet<>(Arrays.asList(workers)), currentId);
     }
 
-    public void saveToXml(CollectionManager collectionManager) throws IOException, SecurityException, FileNotFoundException, FileNotPassedException {
+    public void saveToXml(CollectionManager collectionManager) throws IOException, SecurityException {
         this.writeFile(this.serialize(collectionManager));
     }
 
-    public CollectionManager readFromXml() throws FileNotPassedException, IOException {
+    public CollectionManager readFromXml() throws IOException {
         return this.deserialize(this.readFile());
+    }
+
+    public CollectionManager loadFromXml() {
+        CollectionManager m;
+        try {
+            this.writer.println("Loaded XML.");
+            m = this.readFromXml();
+        } catch (Exception e) {
+            this.writer.println("Unable to parse XML." + (logs ? e.getMessage() : ""));
+            m = new CollectionManager();
+        }
+        return m;
+    }
+
+    private void createFile(String filePath) throws IOException {
+        (new File(filePath)).createNewFile();
     }
 
     private String IOExceptionText() {

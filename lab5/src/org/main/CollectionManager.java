@@ -39,7 +39,7 @@ public class CollectionManager {
 
     public void pop(Worker worker) {
         if (!this.workerExists(worker)) throw new WorkerDoesntExistException(worker.getId());
-        this.workers.remove(worker);
+        this.filterWorkers((Worker w) -> !Objects.equals(w.getId(), worker.getId()));
     }
 
     public Long nextId() {
@@ -48,11 +48,12 @@ public class CollectionManager {
     }
 
     public String getWorkersInfo() {
-        LocalDateTime creationDate = LocalDateTime.now();
+        LocalDateTime creationDate = LocalDateTime.MAX;
         for (Worker w : this.workers)
             if (w.getCreationDate().compareTo(creationDate) < 0)
                 creationDate=w.getCreationDate();
-        return "Collection stores: Workers \n Collection Length: "+ this.getLength() + "\n" + "Collection Created: ";
+        return "Collection stores: Workers \nCollection Length: "+ this.getLength() +
+                "\n" + "Collection creation date: " + (creationDate != LocalDateTime.MAX ? Parser.genString(creationDate) : "Collection not created.");
     }
 
     public Set<Organization> getUniqueOrganizations() {
@@ -62,20 +63,6 @@ public class CollectionManager {
             uniqueOrganizations.add(workerIterator.next().getOrganization());
         }
         return uniqueOrganizations;
-    }
-
-    public long getMinId() {
-        ArrayList<Worker> workers = this.getWorkerList();
-        long minId = Long.MAX_VALUE;
-        for (Worker w : workers) { minId = Math.min(minId, w.getId()); }
-        return minId;
-    }
-
-    public long getMaxId() {
-        ArrayList<Worker> workers = this.getWorkerList();
-        long maxId = Long.MIN_VALUE;
-        for (Worker w : workers) { maxId = Math.max(maxId, w.getId()); }
-        return maxId;
     }
 
     public TreeSet<Worker> getWorkers() {
@@ -105,7 +92,11 @@ public class CollectionManager {
     }
 
     public Boolean workerExists (Worker worker) {
-        return this.workers.contains(worker);
+        if (worker.getSalary() != null)
+            return this.workers.contains(worker);
+        for (Worker otherWorker : this.workers)
+            if (Objects.equals(otherWorker.getId(), worker.getId())) return true;
+        return false;
     }
 
     public void clear() {

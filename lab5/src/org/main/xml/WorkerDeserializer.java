@@ -35,7 +35,7 @@ public class WorkerDeserializer extends StdDeserializer<Worker> {
             Worker worker = new Worker((Long) Parser.parseString(Long.class, node.get("id").textValue()));
             worker.setName(node.get("name").textValue());
             worker.getCoordinates().setX((Integer) Parser.parseString(Integer.class, node.get("x_coordinate").textValue()));
-            worker.getCoordinates().setY((int) Parser.parseString(int.class, node.get("y_coordinate").textValue()));
+            worker.getCoordinates().setY((Integer) Parser.parseString(int.class, node.get("y_coordinate").textValue()));
             worker.setSalary((Float) Parser.parseString(Float.class, node.get("salary").textValue()));
             worker.setCreationDate((LocalDateTime) Parser.parseString(LocalDateTime.class, node.get("creation_date").textValue()));
             worker.setStartDate((Date) Parser.parseString(Date.class, node.get("start_date").textValue()));

@@ -1,15 +1,15 @@
 package org.main.commands;
 
-import org.main.BetterBufferedWriter;
 import org.main.CollectionManager;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class ManagerCommand implements Command {
-    public BetterBufferedWriter writer;
+    public PrintWriter writer;
     public CollectionManager manager;
 
-    public ManagerCommand(BetterBufferedWriter writer, CollectionManager manager) {
+    public ManagerCommand(PrintWriter writer, CollectionManager manager) {
         this.writer = writer;
         this.manager = manager;
     }
@@ -19,9 +19,9 @@ public class ManagerCommand implements Command {
         return true;
     }
 
-    public Boolean enoughArgs(int minArgs, String[] args) throws IOException {
+    public Boolean enoughArgs(int minArgs, String[] args) {
         if (args.length < minArgs) {
-            this.writer.printLn("Invalid command.");
+            this.writer.println("Invalid command.");
         }
         return (args.length >= minArgs);
     }

@@ -1,18 +1,16 @@
 package org.main.commands;
 
-import org.main.BetterBufferedWriter;
-
-import java.io.IOException;
+import java.io.PrintWriter;
 
 public class HelpCommand implements Command {
-    private BetterBufferedWriter writer;
+    private PrintWriter writer;
 
-    public HelpCommand(BetterBufferedWriter writer) {
+    public HelpCommand(PrintWriter writer) {
         this.writer = writer;
     }
 
     @Override
-    public boolean execute(String[] commandArgs) throws IOException {
+    public boolean execute(String[] commandArgs) {
         String helpText = """
                 help : вывести справку по доступным командам
                 info : вывести в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов и т.д.)
@@ -31,7 +29,7 @@ public class HelpCommand implements Command {
                 print_descending : вывести элементы коллекции в порядке убывания
                 print_unique_organization : вывести уникальные значения поля organization всех элементов в коллекции
                 """;
-        writer.printLn(helpText);
+        writer.println(helpText);
         return false;
     }
 

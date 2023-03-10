@@ -52,8 +52,8 @@ public class Worker implements Comparable<Worker>{
 
     @Override
     public int compareTo(Worker otherWorker) {
-        if (Objects.equals(otherWorker.getId(), this.getId())) return 0;
-        return this.getId() > otherWorker.getId() ? 1 : -1;
+        if (Objects.equals(otherWorker.getSalary(), this.getSalary())) return 0;
+        return this.getSalary() > otherWorker.getSalary() ? 1 : -1;
     }
 
     @Override
@@ -92,6 +92,7 @@ public class Worker implements Comparable<Worker>{
 
     public void setSalary(Float salary) {
         checkNull(salary);
+        if (salary.isInfinite()) throw new IllegalArgumentException("Value too large.");
         if (salary <= 0.) throw new IllegalArgumentException("Salary should be >= 0");
         this.salary = salary;
     }
@@ -115,34 +116,34 @@ public class Worker implements Comparable<Worker>{
     }
 
     public Organization getOrganization() {
-        return organization;
+        return this.organization;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public Coordinates getCoordinates() {
-        return coordinates;
+        return this.coordinates;
     }
 
     public LocalDateTime getCreationDate() {
-        return creationDate;
+        return this.creationDate;
     }
 
     public Float getSalary() {
-        return salary;
+        return this.salary;
     }
 
     public Date getStartDate() {
-        return startDate;
+        return this.startDate;
     }
 
     public LocalDateTime getEndDate() {
-        return endDate;
+        return this.endDate;
     }
 
     public Position getPosition() {
-        return position;
+        return this.position;
     }
 }

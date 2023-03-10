@@ -1,13 +1,13 @@
 package org.main.commands;
 
-import org.main.BetterBufferedWriter;
 import org.main.CollectionManager;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class ClearCommand extends ManagerCommand{
 
-    public ClearCommand(BetterBufferedWriter writer, CollectionManager manager) {
+    public ClearCommand(PrintWriter writer, CollectionManager manager) {
         super(writer, manager);
     }
 

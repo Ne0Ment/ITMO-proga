@@ -1,13 +1,13 @@
 package org.main.commands;
 
-import org.main.BetterBufferedWriter;
 import org.main.CollectionManager;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class AddCommand extends ModifiableCommand{
-    public AddCommand(BetterBufferedWriter writer, BufferedReader reader, CollectionManager manager) {
+    public AddCommand(PrintWriter writer, BufferedReader reader, CollectionManager manager) {
         super(writer, reader, manager);
     }
 

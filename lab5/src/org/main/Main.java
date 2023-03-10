@@ -12,29 +12,19 @@ public class Main {
     public static boolean logs = false;
 
     public static void main(String[] args) {
-        if (List.of(args).contains("--logs")) logs=true;
+        if (List.of(args).contains("--logs")) logs=true; //print more exception info
+
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        BetterBufferedWriter writer = new BetterBufferedWriter(new OutputStreamWriter(System.out));
-        FileHandler fileHandler = new FileHandler(args.length > 0 ? args[0] : null);
+        PrintWriter writer = new PrintWriter(new OutputStreamWriter(System.out), true);
+        FileHandler fileHandler = new FileHandler(args.length > 0 ? args[0] : null, writer);
 
-        CollectionManager manager = new CollectionManager();
-        try {
-            manager = fileHandler.readFromXml();
-            try { writer.printLn("Loaded XML."); } catch (IOException ignored) {};
-        } catch (Exception e) {
-            try { writer.printLn("Unable to parse XML." + (logs ? e.getMessage() : "")); } catch (IOException ignored) {};
-        }
+        CollectionManager manager = fileHandler.loadFromXml();
 
-        CommandExecutor commandExecutor = new CommandExecutor(reader, writer, manager, fileHandler);
+        CommandExecutor commandExecutor = new CommandExecutor(reader, writer, manager, fileHandler, new RecursionChecker());
         IOHandler iOHandler = new IOHandler(reader, writer, commandExecutor, false);
 
         Runtime.getRuntime().addShutdownHook(new Thread(iOHandler::exitMessage));
-
-        try {
-            iOHandler.start();
-        } catch (IOException e) {
-            try { writer.printLn("IO interrupted."); } catch (IOException ignored) {}
-        }
+        iOHandler.start();
     }
 
     public static void exit() {
