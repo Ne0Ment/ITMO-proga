@@ -5,9 +5,9 @@ import org.main.data.Worker;
 import org.main.exceptions.WorkerDoesntExistException;
 import org.main.exceptions.WorkerExistsException;
 
-import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Handles operations with the Worker Collection.
@@ -97,6 +97,10 @@ public class CollectionManager {
         for (Worker otherWorker : this.workers)
             if (Objects.equals(otherWorker.getId(), worker.getId())) return true;
         return false;
+    }
+
+    public Worker getWorkerById (Long id) {
+        return this.workers.stream().filter((Worker w) -> Objects.equals(w.getId(), id)).findFirst().get();
     }
 
     public void clear() {

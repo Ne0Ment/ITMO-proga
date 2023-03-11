@@ -3,6 +3,7 @@ package org.main;
 import org.main.data.OrganizationType;
 import org.main.data.Position;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -28,7 +29,8 @@ public class Parser {
             if (Long.class == cl || Long.TYPE == cl) return Long.parseLong( s );
             if (Float.class == cl || Float.TYPE == cl) return Float.parseFloat( s );
             if (Double.class == cl || Double.TYPE == cl) return Double.parseDouble( s );
-            if (Date.class == cl) return dateFormatter.parse(s);
+            if (BigDecimal.class == cl) return new BigDecimal( s );
+            if (Date.class == cl) { LocalDateTime.parse(s, dateTimeFormatter); return dateFormatter.parse(s); }
             if (LocalDateTime.class == cl) return LocalDateTime.parse(s, dateTimeFormatter);
             if (Position.class == cl) return Position.valueOf(s);
             if (OrganizationType.class == cl) return OrganizationType.valueOf(s);
@@ -53,6 +55,7 @@ public class Parser {
         if (Long.class == cl || Long.TYPE == cl) return "1";
         if (Float.class == cl || Float.TYPE == cl) return "1.2";
         if (Double.class == cl || Double.TYPE == cl) return "1.2";
+        if (BigDecimal.class == cl) return "1.2";
         if (Date.class == cl) return "26-05-1976 18:35:00";
         if (LocalDateTime.class == cl) return "26-05-1976 18:35:00";
         if (cl.isEnum()) return cl.getEnumConstants()[0].toString();

@@ -11,6 +11,7 @@ import org.main.xml.WorkerSerializer;
 import java.io.*;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.main.Main.logs;
 
@@ -85,6 +86,8 @@ public class FileHandler {
         Worker[] workers = this.mapper.readValue(s, Worker[].class);
         long currentId = -1L;
         for (Worker w : workers) { currentId = Math.max(w.getId(), currentId); }
+        Set<Long> workerIds = Arrays.stream(workers).map(Worker::getId).collect(Collectors.toSet());
+        if (workerIds.size() != workers.length) throw new IllegalArgumentException("Id's should be unique.");
         return new CollectionManager(new TreeSet<>(Arrays.asList(workers)), currentId);
     }
 

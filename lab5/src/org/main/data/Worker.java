@@ -2,6 +2,7 @@ package org.main.data;
 
 import org.main.Parser;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -35,7 +36,7 @@ public class Worker implements Comparable<Worker>{
             new Input("name", String.class, (v) -> this.setName((String) v)),
             new Input("X coordinate", Integer.class, (v) -> this.coordinates.setX((Integer) v)),
             new Input("Y coordinate", Integer.class, (v) -> this.coordinates.setY((Integer) v)),
-            new Input("salary", Float.class, (v) -> this.setSalary((Float) v)),
+            new Input("salary", BigDecimal.class, (v) -> this.setSalaryBigDecimal((BigDecimal) v)),
             new Input("start date and time", Date.class, (v) -> this.setStartDate((Date) v)),
             new Input("end date and time", LocalDateTime.class, (v) -> this.setEndDate((LocalDateTime) v)),
             new Input("company position", Position.class, (v) -> this.setPosition((Position) v)),
@@ -92,9 +93,18 @@ public class Worker implements Comparable<Worker>{
 
     public void setSalary(Float salary) {
         checkNull(salary);
-        if (salary.isInfinite()) throw new IllegalArgumentException("Value too large.");
+        if (salary == Float.POSITIVE_INFINITY) throw new IllegalArgumentException("Value too large.");
+        if (salary == Float.NEGATIVE_INFINITY) throw new IllegalArgumentException("Salary should be >= 0.");
         if (salary <= 0.) throw new IllegalArgumentException("Salary should be >= 0");
         this.salary = salary;
+    }
+
+    public void setSalaryBigDecimal(BigDecimal salary) {
+        Float floatSalary = salary.floatValue();
+        if (floatSalary == 0 && !salary.equals(new BigDecimal(0))) {
+            throw new IllegalArgumentException("Value to small.");
+        }
+        this.setSalary(floatSalary);
     }
 
     public void setStartDate(Date startDate) {

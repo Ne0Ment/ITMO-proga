@@ -29,6 +29,10 @@ public class ModifiableCommand extends ManagerCommand {
     }
     public void addWorker(Long id) throws IOException {
         Worker worker = this.constructWorker(id);
+        this.addWorker(worker);
+    }
+
+    public void addWorker(Worker worker) {
         try {
             this.manager.add(worker);
             if (logs) writer.println(worker.toString());
@@ -60,7 +64,7 @@ public class ModifiableCommand extends ManagerCommand {
         return worker;
     }
 
-    private String requestField(Worker.Input inputField) throws IOException{
+    public String requestField(Worker.Input inputField) throws IOException{
         if (inputField.cl().isEnum())
             writer.println("Input options: " +
                     String.join(" ", Arrays.stream(inputField.cl().getEnumConstants()).map(Object::toString).toArray(String[]::new)));
