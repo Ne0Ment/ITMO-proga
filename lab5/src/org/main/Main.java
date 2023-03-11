@@ -12,7 +12,7 @@ public class Main {
     public static boolean logs = false;
 
     public static void main(String[] args) {
-        if (List.of(args).contains("--logs")) logs=true; //print more exception info
+        if (List.of(args).contains("--logs")) logs=true;
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         PrintWriter writer = new PrintWriter(new OutputStreamWriter(System.out), true);
