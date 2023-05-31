@@ -1,0 +1,65 @@
+plugins {
+    id 'java'
+}
+
+group 'org.neoment'
+version '1.0-SNAPSHOT'
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://repo.clojars.org'
+        name 'Clojars'
+    }
+}
+
+dependencies {
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.14.2'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+    implementation "com.google.guava:guava:31.1-jre"
+    implementation 'org.postgresql:postgresql:42.2.27'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task serverJar(type: Jar) {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from (sourceSets.main.output){ include "**" }
+    from {
+        configurations.runtimeClasspath.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+    manifest {
+        attributes 'Main-Class': 'org.neoment.ServerMain'
+    }
+    destinationDirectory = file("$rootDir/jar/server")
+    archivesBaseName = "lab7"
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+}
+
+task clientJar(type: Jar) {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from (sourceSets.main.output){ include "**" }
+    from {
+        configurations.runtimeClasspath.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+    manifest {
+        attributes 'Main-Class': 'org.neoment.ClientMain'
+    }
+    destinationDirectory = file("$rootDir/jar/client")
+    archivesBaseName = "lab7"
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+}

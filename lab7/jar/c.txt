@@ -1,0 +1,10 @@
+execute_script /home/studs/s373083/proga/b.txt
+execute_script /home/studs/s373083/proga/b.txt
+execute_script /home/studs/s373083/proga/b.txt
+execute_script /home/studs/s373083/proga/b.txt
+execute_script /home/studs/s373083/proga/b.txt
+execute_script /home/studs/s373083/proga/b.txt
+execute_script /home/studs/s373083/proga/b.txt
+execute_script /home/studs/s373083/proga/b.txt
+execute_script /home/studs/s373083/proga/b.txt
+execute_script /home/studs/s373083/proga/b.txt
